@@ -1,0 +1,6 @@
+mutation UpdateTodo($todo: UpdateTodoInput!) {
+  updateTodo(todo: $todo) {
+    isSuccess
+    message
+  }
+}

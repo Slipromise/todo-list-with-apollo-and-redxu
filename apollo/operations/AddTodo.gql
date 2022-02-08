@@ -1,0 +1,6 @@
+mutation AddTodo($title: String!) {
+  createTodo(title: $title) {
+    isSuccess
+    message
+  }
+}

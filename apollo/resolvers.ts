@@ -21,7 +21,7 @@ export const resolvers = {
       return { isSuccess: true, message: "新增成功" };
     },
     deleteTodo(_, { id }: { id: number }) {
-      const foundIndex = sampleData.findIndex((item) => item.id === id);
+      const foundIndex = sampleData.findIndex((item) => item.id == id);
 
       foundIndex !== -1 && sampleData.splice(foundIndex, 1);
 
@@ -44,7 +44,7 @@ export const resolvers = {
 
       const isSuccess = !!todo;
 
-      return { isSuccess, message: isSuccess ? "刪除成功" : "找不到項目" };
+      return { isSuccess, message: isSuccess ? "修改成功" : "找不到項目" };
     },
   },
 };
