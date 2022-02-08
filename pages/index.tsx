@@ -1,8 +1,7 @@
 import { Box, Container, IconButton, List, TextField } from "@mui/material";
-import  Head  from "next/head";
-import Link from "next/link";
 import TodoListItem from "../components/TodoListItem";
 import AddIcon from '@mui/icons-material/Add';
+import Head from "next/head";
 
 const IndexPage = () => (
   <Container>
