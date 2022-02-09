@@ -1,4 +1,4 @@
-import { api } from 'src/app/api/baseApi';
+import { api } from './graphqlApi';
 export type Maybe<T> = T | null;
 export type InputMaybe<T> = Maybe<T>;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
