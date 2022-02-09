@@ -1,10 +1,11 @@
 import React from "react";
-import Link from "next/link";
 import { ListItem, ListItemButton, ListItemText } from "@mui/material";
-import CheckIcon from "@mui/icons-material/Check";
 import CloseIcon from "@mui/icons-material/Close";
 import CircleOutlinedIcon from '@mui/icons-material/CircleOutlined';
 import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import styles from '../styles/TodoListItem.module.css'
+
+
 type Props = {
   title: string;
   isDone?: boolean;
@@ -13,7 +14,7 @@ type Props = {
 };
 
 const TodoListItem = ({ title, onDelete, isDone, onCheck }: Props) => (
-  <ListItem>
+  <ListItem className={styles.container} data-is-done={isDone} >
     <ListItemButton onClick={onCheck}>
       {isDone ? <CheckCircleOutlinedIcon /> : <CircleOutlinedIcon />}
     </ListItemButton>

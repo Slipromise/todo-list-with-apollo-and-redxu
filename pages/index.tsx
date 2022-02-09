@@ -9,6 +9,7 @@ import {
   useUpdateTodoMutation,
 } from "../store/TodoApiEnhancer";
 import React, { useEffect, useMemo, useState } from "react";
+import styles from '../styles/Home.module.css'
 
 const IndexPage = () => {
 
@@ -23,20 +24,10 @@ const IndexPage = () => {
   const [updateTodo,updateTodoResult] = useUpdateTodoMutation();
 
 
-  // TODO: 待確認與修正 tag 不起作用
-  useEffect(()=>{
-    if(addTodoResult.data?.createTodo.isSuccess || deleteTodoResult.data?.deleteTodo.isSuccess ||deleteTodoResult.data?.deleteTodo.isSuccess ){
-      refetch();
-    }
-  },[addTodoResult,deleteTodoResult,updateTodoResult])
-
-
-
   const todoList = useMemo<
     (React.ComponentProps<typeof TodoListItem> & { id: string })[]
   >(() => {
-
-    if(!data) return [];
+    if (!data) return [];
 
     return data.todoList?.map((item) => ({
       ...item,
@@ -45,6 +36,19 @@ const IndexPage = () => {
       onDelete: () => deleteTodo({ id: item.id }),
     }));
   }, [data]);
+
+  // TODO: 待確認與修正 tag 不起作用
+  useEffect(()=>{
+    if (
+      addTodoResult.data?.createTodo.isSuccess ||
+      deleteTodoResult.data?.deleteTodo.isSuccess ||
+      updateTodoResult.data?.updateTodo.isSuccess
+    ) {
+      refetch();
+    }
+  },[addTodoResult,deleteTodoResult,updateTodoResult])
+
+  
 
   return (
     <Container>
@@ -57,16 +61,18 @@ const IndexPage = () => {
       {todoList.map(({ id, ...props }) => (
         <TodoListItem key={id} {...props} />
       ))}
-      <Box>
+      <Box className={styles.input_box} >
         <TextField
           value={newTodoTitle}
           onChange={(e) => setNewTodoTitle(e.target.value)}
+          placeholder="請輸入代辦事項"
         />
         <IconButton
           onClick={() => {
             setNewTodoTitle('')
             addTodo({ title: newTodoTitle });
           }}
+          disabled={!newTodoTitle}
         >
           <AddIcon />
         </IconButton>

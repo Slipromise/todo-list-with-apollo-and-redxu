@@ -1,0 +1,13 @@
+.input_box{
+    display: flex;
+    align-items: center;
+}
+
+.input_box :global(.MuiTextField-root){
+    margin: .5em;
+    flex: 1;
+}
+
+.input_box :global(.MuiInputBase-input){
+    padding: 8px;
+}
